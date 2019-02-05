@@ -1,0 +1,24 @@
+{
+  "browserSyncOptions": {
+    "proxy": "https://odu.local",
+    "notify": false
+  },
+  "browserSyncWatchFiles": [
+    "./css/*.css",
+    "./js/*.js",
+    "./**/*.php"
+  ],
+  "paths": {
+    "js": ".js",
+    "css": "./css",
+    "img": "./img",
+    "imgsrc": "./src/img",
+    "scss": "./src/scss",
+    "node": "./node_modules/",
+    "bower": "./bower_components/",
+    "dev": "./src",
+    "dist": "./dist",
+    "distprod": "./dist-product",
+    "vendor": ""
+  }
+}
