@@ -15,7 +15,7 @@ var gulpIf = require('gulp-if');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 var del = require('del');
-// var runSequence = require('run-sequence');
+var rename = require('gulp-rename');
 
 
 
@@ -27,13 +27,18 @@ var paths = cfg.paths;
 gulp.task('browser-sync', function() {
   browserSync.init({
     server: {
-      baseDir: 'app'
+      baseDir: 'public'
     },
   })
 });
 
 
-gulp.task('sass', function() {
+// gulp.task('browser-sync', function() {
+//   browserSync.init(cfg.browserSyncWatchFiles, cfg.browserSyncOptions);
+// });
+
+
+gulp.task('styles', function() {
   return gulp.src('app/scss/**/*.scss') // Gets all files ending with .scss in app/scss
     .pipe(plumber({
       errorHandler: function(err) {
@@ -47,9 +52,10 @@ gulp.task('sass', function() {
       browsers: ['last 4 versions'],
       cascade: false
     }))
-    .pipe(cssnano())
-    .pipe(sourcemaps.write(undefined, { sourceRoot: null }))
-    .pipe(gulp.dest('app/css'))
+    .pipe(cssnano({ discardComments: { removeAll: true } }))
+    .pipe(concat('main.css'))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('public/css'))
     .pipe(browserSync.reload({
       stream: true
     }));
@@ -57,14 +63,22 @@ gulp.task('sass', function() {
 
 
 
-gulp.task('js', function() {
+gulp.task('scripts', function() {
   return gulp.src('app/js/*.js') // Gets all files ending with .scss in app/scss
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(babel())
     .pipe(terser())
-    .pipe(concat('all.js'))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('app/public'))
+    .pipe(concat('main.js'))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('public/js'))
+    .pipe(browserSync.reload({
+      stream: true
+    }));
+});
+
+gulp.task('html', function() {
+  return gulp.src('app/**/*.{html, php}') // Gets all files ending with .scss in app/scss 
+    .pipe(gulp.dest('public'))
     .pipe(browserSync.reload({
       stream: true
     }));
@@ -84,14 +98,53 @@ gulp.task('images', function() {
         ]
       })
 ]))
-    .pipe(gulp.dest('app/public/img'))
+    .pipe(gulp.dest('public/img'))
     .pipe(browserSync.reload({
       stream: true
     }));
 });
 
 
+gulp.task('copy', ['styles', 'scripts', 'images', 'html']);
 
-// gulp.task('default', ['js', sass], () => {
-//   gulp.watch('src/js/main.js', ['js']);
-// });
+gulp.task('watch:styles', ['styles'], function() {
+  gulp.watch('app/scss/**/*.scss', ['styles']);
+});
+gulp.task('watch:scripts', ['scripts'], function() {
+  gulp.watch('app/scss/**/*.scss', ['scripts']);
+});
+gulp.task('watch:images', ['images'], function() {
+  gulp.watch('app/img/*.{png,gif,jpg,jpeg,svg}', ['images']);
+});
+gulp.task('watch:html', ['html'], function() {
+  gulp.watch('app/**/*.{html,php}', ['html']);
+});
+
+
+// Deleting any file inside the /dist folder
+gulp.task('clean-dist', function() {
+  return del([paths.dist + '/**']);
+});
+
+gulp.task('clean-public', function() {
+  return del([paths.public + '/**']);
+});
+
+// gulp dist
+// Copies the files to the /dist folder for distribution as simple theme
+gulp.task('dist', ['clean-all'], function() {
+  return gulp.src([paths.public + '/**/*', '!readme.txt', '!readme.md', '!package.json', '!package-lock.json', '!gulpfile.js', '!gulpconfig.json', '!CHANGELOG.md', '!.travis.yml', '!jshintignore', '!codesniffer.ruleset.xml'], { 'buffer': true })
+    .pipe(gulp.dest(paths.dist));
+});
+
+
+
+gulp.task('clean-all', function(callback) {
+  gulpSequence('clean-public', 'copy', 'clean-dist')(callback);
+});
+
+
+gulp.task('watch', ['watch:styles', 'watch:scripts', 'watch:images', 'watch:html'], function() {});
+gulp.task('watch-bs', ['browser-sync', 'watch'], function() {});
+gulp.task('default', ['watch-bs'], function() {});
+gulp.task('production', ['dist']);
