@@ -1,0 +1,11 @@
+ @mixin ipad {
+   @media (min-width: #{$size-sm}) {
+     @content;
+   }
+ }
+
+ @mixin laptop {
+   @media (min-width: #{$size-lg}) {
+     @content;
+   }
+ }

@@ -1,7 +1,9 @@
 {
   "browserSyncOptions": {
     "notify": false,
-    "baseDir": "public"
+    "server": {
+      "baseDir": "./public"
+    }
   },
   "browserSyncWatchFiles": [
     "./css/*.css",

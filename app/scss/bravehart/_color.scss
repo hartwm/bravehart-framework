@@ -1,0 +1,26 @@
+// Core colors 
+$primary-dark: darken($primary, 3%) !default;
+$primary-light: lighten($primary, 3%) !default;
+$secondary: lighten($primary, 37.5%) !default;
+$secondary-dark: darken($secondary, 3%) !default;
+$secondary-light: lighten($secondary, 3%) !default;
+
+// Gray colors 
+$gray: lighten($dark, 55%) !default;
+$gray-dark: darken($gray, 30%) !default;
+$gray-light: lighten($gray, 20%) !default;
+
+$border: lighten($dark, 65%) !default;
+$border-dark: darken($border, 10%) !default;
+$border-light: lighten($border, 8%) !default;
+$bg: lighten($dark, 75%) !default;
+$bg-dark: darken($bg, 3%) !default;
+$bg-light: $light !default;
+
+
+// Other colors
+$body-bg: $bg-light !default;
+$body-font: lighten($dark, 5%) !default;
+$link: $primary !default;
+$link-dark: darken($link, 10%) !default;
+$link-light: lighten($link, 10%) !default;
