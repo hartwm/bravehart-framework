@@ -122,8 +122,8 @@ gulp.task('dist', ['clean-all'], function() {
 
 
 
-gulp.task('clean-all', function(callback) {
-  gulpSequence('clean-public', 'copy', 'clean-dist')(callback);
+gulp.task('clean', function(callback) {
+  gulpSequence('clean-public', 'clean-dist')(callback);
 });
 
 

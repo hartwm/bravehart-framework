@@ -1,0 +1,330 @@
+@import "bravehart/bravehart.scss";
+
+$black:#000;
+$base: rgb(219, 168, 57);
+$recovery:$base;
+$afterburn:adjust-hue($base, 40);
+$industrial:adjust-hue($base, 80);
+$cardio:adjust-hue($base, 120);
+$conditioning:adjust-hue($base, 160);
+$strength: adjust-hue($base, 200);
+$aaa: adjust-hue($base, 240);
+$zone: adjust-hue($base, 280);
+$foundations: adjust-hue($base, 320);
+
+
+
+.legend {
+  clear: both;
+
+  div {
+    border-left: solid 30px;
+    padding-left: 5px;
+    margin-bottom: 5px;
+    float: left;
+    margin: 5px 10px;
+  }
+
+}
+
+#davis-schedule {
+
+
+  .bw-widget:not(.bw-embellished--solid) {
+    .bw-session[data-bw-widget-mbo-class-name="recovery"] {
+      border-left-color: $recovery;
+
+      .bw-widget__cta:hover,
+      .hc_availability {
+        background: $recovery;
+      }
+
+
+    }
+
+    .bw-session[data-bw-widget-mbo-class-name="afterburn"] {
+      border-left-color: $afterburn;
+
+      .bw-widget__cta:hover,
+      .hc_availability {
+        background: $afterburn;
+      }
+
+    }
+
+    .bw-session[data-bw-widget-mbo-class-name="industrial_strength"] {
+      border-left-color: $industrial;
+
+      .bw-widget__cta:hover,
+      .hc_availability {
+        background: $industrial;
+      }
+    }
+
+    .bw-session[data-bw-widget-mbo-class-name="foundations_cardio"] {
+      border-left-color: $cardio;
+
+      .bw-widget__cta:hover,
+      .hc_availability {
+        background: $cardio;
+      }
+    }
+
+    .bw-session[data-bw-widget-mbo-class-name="foundations_conditioning"] {
+      border-left-color: $conditioning;
+
+      .bw-widget__cta:hover,
+      .hc_availability {
+        background: $conditioning;
+      }
+    }
+
+    .bw-session[data-bw-widget-mbo-class-name="foundations_strength"] {
+      border-left-color: $strength;
+
+      .bw-widget__cta:hover,
+      .hc_availability {
+        background: $strength;
+      }
+    }
+
+    .bw-session[data-bw-widget-mbo-class-name="aaa"] {
+      border-left-color: $aaa;
+
+      .bw-widget__cta:hover,
+      .hc_availability {
+        background: $aaa;
+      }
+    }
+
+    .bw-session[data-bw-widget-mbo-class-name="zone_training"] {
+      border-left-color: $zone;
+
+      .bw-widget__cta:hover,
+      .hc_availability {
+        background: $zone;
+      }
+    }
+  }
+
+
+
+  .bw-widget__day {
+    margin-top: 1rem;
+    box-shadow: 0 0 20px rgba($dark, 0.2);
+  }
+
+  .bw-widget__date {
+    background: $primary;
+    background: $dark;
+    color: $light;
+  }
+
+  .bw-session {
+    border-left: 5px solid;
+  }
+
+  .bw-session__basics {}
+
+  .bw-session__info {}
+
+  .bw-session__time {
+    font-weight: bold;
+  }
+
+  .bw-session__group1 {}
+
+  .bw-session__name {}
+
+  .bw-session__type {}
+
+  .bw-session__meta {}
+
+  .bw-session__detail-link {
+    color: $dark;
+  }
+
+  .bw-session__group2 {
+    margin-top: 5px;
+  }
+
+  .bw-session__staff {
+    color: $dark;
+    font-weight: bold;
+  }
+
+  .bw-session__availability {}
+
+  .hc_availability {
+    padding: 3px 10px;
+    display: inline-block;
+    border-radius: 3px;
+    color: $light;
+  }
+
+  .bw-session__detail-link {}
+
+
+  .bw-widget:not(.bw-embellished--solid) .bw-widget__cta:not(:hover) {
+    background: $dark;
+    color: $light;
+    padding: 5px 15px;
+    border-radius: 3px;
+  }
+
+  .bw-widget:not(.bw-embellished--solid) .bw-widget__cta {
+    &:hover {
+      padding: 5px 15px;
+      border-radius: 3px;
+      background: lighten($dark, 20%);
+      color: $light;
+      text-decoration: none;
+    }
+  }
+
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+#davis-list {
+
+  .class_show {
+
+    &.zone_training {
+      border-left-color: $zone;
+
+      // .class_offered_link a {
+      //   color: $zone;
+      // }
+    }
+
+    &.afterburn {
+      border-left-color: $afterburn;
+
+      // .class_offered_link a {
+      //   color: $afterburn;
+      // }
+    }
+
+    &.recovery {
+      border-left-color: $recovery;
+
+      // .class_offered_link a {
+      //   color: $recovery;
+      // }
+    }
+
+    &.foundations {
+      border-left-color: $foundations;
+
+      // .class_offered_link a {
+      //   color: $foundations;
+      // }
+    }
+
+    &.foundations_conditioning {
+      border-left-color: $conditioning;
+
+      // .class_offered_link a {
+      //   color: $conditioning
+      // }
+    }
+
+    &.foundations_cardio {
+      border-left-color: $cardio;
+
+      // .class_offered_link a {
+      //   color: $cardio
+      // }
+    }
+
+    &.foundations_strength {
+      border-left-color: $strength;
+
+      // .class_offered_link a {
+      //   color: $strength
+      // }
+    }
+
+    &.industrial_strength {
+      border-left-color: $industrial;
+
+      // .class_offered_link a {
+      //   color: $industrial
+      // }
+    }
+
+    &.aaa {
+      border-left-color: $aaa;
+
+      // .class_offered_link a {
+      //   color: $aaa;
+      // }
+    }
+
+
+
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    border-left: 5px solid;
+    color:#818285;
+
+    &:nth-child(even) {
+      background: $gray-light;
+    }
+
+    .class_description {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .class_name {
+      font-size: 1.75rem;
+      color: #495057;
+    }
+
+    .class_offered_link {
+      background: transparent;
+      box-shadow: none;
+
+      a {
+        color: $dark;
+        text-decoration: none;
+        padding: 5px 5px 5px 0;
+        display: inline-block;
+        margin: 5px 0;
+        line-height: 1.25;
+        position: relative;
+        transition: all 300ms ease-in-out;
+
+        &::after {
+          transition: all 300ms ease-in-out;
+          content: "";
+          position: absolute;
+          right: -8px;
+          top: 0;
+          bottom: 0;
+          display: block;
+          height: 0;
+          width: 0;
+          border-top: 8px solid transparent;
+          border-bottom: 8px solid transparent;
+          border-left: 8px solid;
+          margin: auto;
+        }
+
+        &:hover {
+          &::after {
+            right: -16px;
+          }
+        }
+      }
+
+
+    }
+  }
+
+
+}
