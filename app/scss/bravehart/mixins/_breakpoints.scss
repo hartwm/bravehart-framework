@@ -1,0 +1,38 @@
+ @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+   $min: map-get($breakpoints, $name);
+   @return if($min !=0, $min, null);
+ }
+
+ @function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+   @return if(breakpoint-min($name, $breakpoints)==null, "", "-#{$name}");
+ }
+
+
+ @mixin up($name, $breakpoints: $grid-breakpoints) {
+   $min: breakpoint-min($name, $breakpoints);
+
+   @if $min {
+     @media (min-width: $min) {
+       @content;
+     }
+   }
+
+   @else {
+     @content;
+   }
+ }
+
+
+ @mixin down($name, $breakpoints: $grid-breakpoints) {
+   $max: breakpoint-min($name, $breakpoints);
+
+   @if $max {
+     @media (max-width: $max) {
+       @content;
+     }
+   }
+
+   @else {
+     @content;
+   }
+ }
