@@ -8,21 +8,21 @@
 }
 
 
-@mixin padding($small:2rem, $medium:$small, $large:$medium) {
-  padding-top: $small;
-  padding-bottom: $small;
+// @mixin padding($small:2rem, $medium:$small, $large:$medium) {
+//   padding-top: $small;
+//   padding-bottom: $small;
 
 
-  @include break-md() {
-    padding-top: $medium;
-    padding-bottom: $medium;
-  }
+//   @include break-md() {
+//     padding-top: $medium;
+//     padding-bottom: $medium;
+//   }
 
-  @include break-lg() {
-    padding-top: $large;
-    padding-bottom: $large;
-  }
-}
+//   @include break-lg() {
+//     padding-top: $large;
+//     padding-bottom: $large;
+//   }
+// }
 
 
 %visuallyhidden {

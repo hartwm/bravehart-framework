@@ -4,8 +4,8 @@ var concat = require('gulp-concat');
 var babel = require('gulp-babel');
 var plumber = require('gulp-plumber');
 var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var cssnano = require('gulp-cssnano');
+var autoprefixer = require('autoprefixer');
+var cssnano = require('cssnano');
 var terser = require('gulp-terser');
 var gulpSequence = require('gulp-sequence');
 var useref = require('gulp-useref');
@@ -14,16 +14,17 @@ var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 var del = require('del');
 var rename = require('gulp-rename');
+var postcss = require('gulp-postcss');
+var precss = require('precss');
+
 var browserSync = require('browser-sync')
   .create();
 var reload = browserSync.reload;
 var stream = browserSync.stream;
 
-
 // Configuration file to keep your code DRY
 var cfg = require('./config.json');
 var paths = cfg.paths;
-
 
 
 gulp.task('browser-sync', function() {
@@ -31,7 +32,28 @@ gulp.task('browser-sync', function() {
 });
 
 
+var opacity = function(css, opts) {
+  css.eachDecl(function(decl) {
+    if (decl.prop === 'opacity') {
+      decl.parent.insertAfter(decl, {
+        prop: '-ms-filter',
+        value: '"progid:DXImageTransform.Microsoft.Alpha(Opacity=' + (parseFloat(decl.value) * 100) + ')"'
+      });
+    }
+  });
+};
+
+
 gulp.task('styles', function() {
+
+  var plugins = [
+    autoprefixer({
+      browsers: ['last 4 versions'],
+      cascade: false
+    }),
+    cssnano({ discardComments: { removeAll: true } }),
+  ];
+
   return gulp.src('app/scss/**/*.scss') // Gets all files ending with .scss in app/scss
     .pipe(plumber({
       errorHandler: function(err) {
@@ -41,15 +63,11 @@ gulp.task('styles', function() {
     }))
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(sass({ errLogToConsole: true }))
-    .pipe(autoprefixer({
-      browsers: ['last 4 versions'],
-      cascade: false
-    }))
-    .pipe(cssnano({ discardComments: { removeAll: true } }))
+    .pipe(postcss(plugins))
     .pipe(concat('main.css'))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('public/css'))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream())
 });
 
 
