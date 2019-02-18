@@ -1,19 +1,1 @@
-@import "bravehart/bravehart.scss";
 
-
-h1 {
-  opacity: 0.8;
-  color: red;
-
-  @include down(md) {
-    color: green
-  }
-
-  @include up(md) {
-    color: blue;
-  }
-
-  @include down(md) {
-    // color: yellow
-  }
-}

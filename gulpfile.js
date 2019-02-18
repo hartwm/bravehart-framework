@@ -105,7 +105,6 @@ gulp.task('images', function() {
 });
 
 
-gulp.task('copy', ['styles', 'scripts', 'images', 'html']);
 
 gulp.task('watch:styles', ['styles'], function() {
   gulp.watch('app/scss/**/*.scss', ['styles']);
@@ -133,19 +132,15 @@ gulp.task('clean-public', function() {
 
 // gulp dist
 // Copies the files to the /dist folder for distribution as simple theme
-gulp.task('dist', ['clean-all'], function() {
+gulp.task('dist', function() {
   return gulp.src([paths.public + '/**/*', '!readme.txt', '!readme.md', '!package.json', '!package-lock.json', '!gulpfile.js', '!gulpconfig.json', '!CHANGELOG.md', '!.travis.yml', '!jshintignore', '!codesniffer.ruleset.xml'], { 'buffer': true })
     .pipe(gulp.dest(paths.dist));
 });
 
 
 
-gulp.task('clean', function(callback) {
-  gulpSequence('clean-public', 'clean-dist')(callback);
-});
-
-
-gulp.task('watch', ['watch:styles', 'watch:scripts', 'watch:images', 'watch:html'], function() {});
-gulp.task('watch-bs', ['browser-sync', 'watch'], function() {});
-gulp.task('default', ['watch-bs'], function() {});
-gulp.task('production', ['dist']);
+gulp.task('clean', ['clean-public', 'clean-dist']);
+gulp.task('copy', ['styles', 'scripts', 'images', 'html']);
+gulp.task('watch', ['watch:styles', 'watch:scripts', 'watch:images', 'watch:html']);
+gulp.task('production', gulpSequence('clean-public', 'clean-dist', 'copy', 'dist'));
+gulp.task('default', gulpSequence('watch', 'browser-sync'));
