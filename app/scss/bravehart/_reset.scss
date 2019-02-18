@@ -1,13 +1,16 @@
-// 
+//
 // 1. Reset after normalize
 // Basic patterns that I don't use
-// 
+//
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+html {
+  font-size: $html-font-size;
+}
 
 a {
   text-decoration: none;
