@@ -91,16 +91,16 @@ gulp.task('html', function() {
 gulp.task('images', function() {
   return gulp.src('app/img/*')
     .pipe(imagemin([
-    imagemin.gifsicle({ interlaced: true }),
-    imagemin.jpegtran({ progressive: true }),
-    imagemin.optipng({ optimizationLevel: 5 }),
-    imagemin.svgo({
+      imagemin.gifsicle({ interlaced: true }),
+      imagemin.jpegtran({ progressive: true }),
+      imagemin.optipng({ optimizationLevel: 5 }),
+      imagemin.svgo({
         plugins: [
           { removeViewBox: true },
           { cleanupIDs: false }
         ]
       })
-]))
+    ]))
     .pipe(gulp.dest('public/img'))
 });
 
@@ -119,16 +119,13 @@ gulp.task('watch:images', ['images'], function() {
 gulp.task('watch:html', ['html'], function() {
   gulp.watch('app/**/*.{html,php}', ['html']);
 });
-
-
-// Deleting any file inside the /dist folder
 gulp.task('clean-dist', function() {
   return del([paths.dist + '/**']);
 });
-
 gulp.task('clean-public', function() {
   return del([paths.public + '/**']);
 });
+
 
 // gulp dist
 // Copies the files to the /dist folder for distribution as simple theme

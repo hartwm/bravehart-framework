@@ -1,0 +1,14 @@
+@function strip-unit($number) {
+  @if type-of($number)=='number'and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+
+@function divisable($number, $base: $base-font-size, $columns: $grid-columns) {
+  $multiplier: strip-unit($base) * $columns;
+  $max: (floor(strip-unit($number)/$columns) * $multiplier)/strip-unit($base) * 1em;
+  @return if($max !=0, $max, 100%);
+}
