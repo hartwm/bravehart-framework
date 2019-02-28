@@ -1,0 +1,55 @@
+$transition: 400ms;
+
+@mixin button($bg: $primary, $color: null) {
+  $local-text: null;
+  $local-hover: null;
+  @if $color {
+    $local-text: $color;
+  } @else {
+    $local-text: findColorInvert($bg);
+  }
+
+  background: $bg;
+  border: 1px solid;
+  border-color: $bg;
+  display: inline-block;
+  text-align: center;
+  transition: $transition color ease-in-out, $transition background ease-in-out, $transition border-color ease-in-out;
+  color: $local-text;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: darken($bg, 15%);
+    color: findColorInvert(darken($bg, 15%));
+    border-color: darken($bg, 15%);
+    cursor: pointer;
+  }
+}
+
+@mixin button-outline($color: $primary) {
+  display: inline-block;
+  text-align: center;
+  transition: $transition color ease-in-out, $transition background ease-in-out, $transition border-color ease-in-out;
+  color: $color;
+  border: 1px solid;
+  border-color: $color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $color;
+    border-color: $color;
+    color: findColorInvert($color);
+    cursor: pointer;
+  }
+}
+
+.btn {
+  padding: 1rem;
+  @include button($primary);
+}
+.btn-outline {
+  padding: 1rem;
+  @include button-outline($primary);
+}

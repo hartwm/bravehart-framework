@@ -1,0 +1,46 @@
+@mixin make-visible-flex($breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+    @include up($breakpoint, $breakpoints) {
+      .flex#{$infix} {
+        display: flex;
+      }
+    }
+  }
+}
+@mixin make-visible-block($breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+    @include up($breakpoint, $breakpoints) {
+      .block#{$infix} {
+        display: block;
+      }
+    }
+  }
+}
+@mixin make-visible-inline($breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+    @include up($breakpoint, $breakpoints) {
+      .inline#{$infix} {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+@mixin make-visible-hidden($breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+    @include down($breakpoint, $breakpoints) {
+      .hide#{$infix} {
+        display: none;
+      }
+    }
+  }
+}
+
+@include make-visible-flex();
+@include make-visible-block();
+@include make-visible-inline();
+@include make-visible-hidden();

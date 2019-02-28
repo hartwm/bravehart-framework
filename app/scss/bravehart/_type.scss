@@ -1,3 +1,5 @@
+$type-rhythm: 6/5;
+
 h1,
 h2,
 h3,
@@ -5,13 +7,39 @@ h4,
 h5,
 h6,
 p {
-  font-size: $base-font-size;
+  @include font-size($base-font-size);
   margin: 0;
   padding: 0;
+  font-weight: 400;
 }
 
+.xxl {
+  @include font-size(pow($type-rhythm, 8) * $base-font-size);
+}
+.xl {
+  @include font-size(pow($type-rhythm, 7) * $base-font-size);
+}
+.lg {
+  @include font-size(pow($type-rhythm, 6) * $base-font-size);
+}
 .h1 {
+  @include font-size(pow($type-rhythm, 5) * $base-font-size);
 }
-
 .h2 {
+  @include font-size(pow($type-rhythm, 4) * $base-font-size);
+}
+.h3 {
+  @include font-size(pow($type-rhythm, 3) * $base-font-size);
+}
+.h4 {
+  @include font-size(pow($type-rhythm, 2) * $base-font-size);
+}
+.h5 {
+  @include font-size(pow($type-rhythm, 1) * $base-font-size);
+}
+.sm {
+  @include font-size($base-font-size / pow($type-rhythm, 1));
+}
+.xs {
+  @include font-size($base-font-size / pow($type-rhythm, 2));
 }
