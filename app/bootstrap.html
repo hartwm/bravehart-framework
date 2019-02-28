@@ -6,18 +6,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Bravehart - Grid</title>
-  <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <style>
+    .full {
+      background: gray;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
 
+    .bg-active {
+      background: blue;
+      color: white;
+    }
 
+    .bg-primary {
+      background: purple;
+    }
+
+    .bg-secondary {
+      background: green;
+    }
+
+    .inner {
+      background: yellow;
+      padding: 1rem;
+      color: black;
+    }
+
+    .col {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
   </style>
 </head>
 
 <body>
 
   <div class="full">
-    <div class="container-laptop bg-active">
+    <div class="container bg-active">
       <div class="row justify-content-center bg-secondary">
         <div class="col bg-primary">
           <div class="inner">.bg-primary .col</div>
@@ -35,9 +66,9 @@
 
 
   <div class="full">
-    <div class="container-laptop bg-active">
+    <div class="container bg-active">
       .gap-0
-      <div class="row justify-content-center bg-secondary gap-0">
+      <div class="row justify-content-center bg-secondary no-gutters">
         <div class="col bg-primary">
           <div class="inner">.bg-primary .col</div>
         </div>
@@ -52,31 +83,11 @@
   </div>
 
 
-  <div class="full">
-    <div class="container-laptop bg-active">
-      .gap-sm-8
-      <div class="row justify-content-center bg-secondary gap-0">
-        <div class="col bg-primary">
-          .col
-          <div class="inner">.inner</div>
-        </div>
-        <div class="col bg-primary">
-          .col
-          <div class="inner">.inner</div>
-        </div>
-        <div class="col bg-primary">
-          .col
-          <div class="inner">.inner</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 
   <div class="full">
-    <div class="container-laptop bg-active">
+    <div class="container bg-active">
       .gap-0
-      <div class="row justify-content-center bg-secondary gap-sm-0 gap-lg-8">
+      <div class="row justify-content-center bg-secondary gap-lg-8">
         <div class="col bg-primary">
           .col
           <div class="inner">.inner</div>

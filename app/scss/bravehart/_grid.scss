@@ -1,157 +1,183 @@
- //
- // Grid
- //
- $grid-columns:12 !default;
- $grid-gutter: 1rem !default; // Z-index
- $grid-breakpoints: (null:0, xs:30em, phone:30em, sm: 48em, tablet: 48em, md: 64em, lg: 80em, laptop: 85em, xl: 85em, xxl:116em, desktop: 116em) !default;
+@mixin make-row($gutter: $grid-gutter) {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -$gutter / 2;
+  margin-left: -$gutter / 2;
+}
 
- @mixin make-row($gutter: $grid-gutter) {
-   display: flex;
-   flex-wrap: wrap;
-   margin-right: -$gutter / 2;
-   margin-left: -$gutter / 2;
- }
+@mixin make-container($gutter: $grid-gutter) {
+  margin: auto;
+  position: relative;
+  padding-right: $gutter / 2;
+  padding-left: $gutter / 2;
+}
 
- @mixin make-container($gutter: $grid-gutter) {
-   margin: auto;
-   position: relative;
-   padding-right: $gutter / 2;
-   padding-left: $gutter / 2;
- }
+@mixin make-col($size, $columns: $grid-columns) {
+  flex: 0 0 percentage($size / $columns);
+  max-width: percentage($size / $columns);
+}
 
- @mixin make-col($size, $columns: $grid-columns) {
-   flex: 0 0 percentage($size / $columns);
-   max-width: percentage($size / $columns);
- }
+@mixin make-fix-col($size) {
+  flex: 0 0 percentage($size / 100);
+  max-width: percentage($size / 100);
+}
 
- @mixin make-fix-col($size) {
-   flex: 0 0 percentage($size / 100);
-   max-width: percentage($size / 100);
- }
+@mixin make-gap($count: 8, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
 
- @mixin make-gap($count:8, $breakpoints:$grid-breakpoints) {
-   @each $breakpoint in map-keys($breakpoints) {
-     $infix: breakpoint-infix($breakpoint, $breakpoints);
+    @include up($breakpoint, $breakpoints) {
+      @for $i from 0 through $count {
+        &.gap#{$infix}-#{$i} {
+          [class^="col"],
+          [class^=" col"],
+          [class^="col-"],
+          [class*=" col-"] {
+            padding-right: ($grid-gutter/$count) * $i;
+            padding-left: ($grid-gutter/$count) * $i;
+          }
+        }
+      }
+    }
+  }
+}
 
-     @for $i from 0 through $count {
-       &.gap#{$infix}-#{$i} {
+@mixin make-grid-containers($gutter: $grid-gutter, $breakpoints: $grid-breakpoints) {
+  %container {
+    margin: auto;
+    position: relative;
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  }
 
-         [class^="col"],
-         [class^=" col"],
-         [class^="col-"],
-         [class*=" col-"] {
-           padding-right: ($grid-gutter/$count) * $i;
-           padding-left: ($grid-gutter/$count) * $i;
-         }
-       }
-     }
-   }
- }
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+    $min: map-get($breakpoints, $breakpoint);
+    $max: divisable($min);
 
+    .container#{$infix} {
+      max-width: $max;
+      @extend %container;
+    }
+  }
+}
 
- @mixin make-grid-containers($gutter: $grid-gutter, $breakpoints: $grid-breakpoints) {
-   %container {
-     margin: auto;
-     position: relative;
-     padding-right: $gutter / 2;
-     padding-left: $gutter / 2;
-   }
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter, $breakpoints: $grid-breakpoints) {
+  // Common properties for all breakpoints
+  %grid-column {
+    position: relative;
+    width: 100%;
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  }
 
-   @each $breakpoint in map-keys($breakpoints) {
-     $infix: breakpoint-infix($breakpoint, $breakpoints);
-     $min: map-get($breakpoints, $breakpoint);
-     $max: divisable($min);
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
 
-     .container#{$infix} {
-       max-width: $max;
-       @extend %container;
-     }
-   }
+    //
+    // APPLY BASE
+    //
+    @for $i from 1 through $columns {
+      .col#{$infix}-#{$i} {
+        @extend %grid-column;
+      }
+    }
 
- }
+    .col#{$infix},
+    .col#{$infix}-auto {
+      @extend %grid-column;
+    }
 
+    //
+    // FIFTHS GRID
+    //
+    .col#{$infix}-fifths {
+      @extend %grid-column;
+    }
 
- @mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter, $breakpoints: $grid-breakpoints) {
+    //
+    // RESPONSIVE GRID
+    //
+    @include up($breakpoint, $breakpoints) {
+      .col#{$infix} {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+      }
 
-   // Common properties for all breakpoints
-   %grid-column {
-     position: relative;
-     width: 100%;
-     padding-right: $gutter / 2;
-     padding-left: $gutter / 2;
-   }
+      .col#{$infix}-auto {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%;
+      }
 
-   @each $breakpoint in map-keys($breakpoints) {
-     $infix: breakpoint-infix($breakpoint, $breakpoints);
+      //
+      // STANDARD GRID
+      //
+      @for $i from 1 through $columns {
+        .col#{$infix}-#{$i} {
+          @include make-col($i, $columns);
+        }
+      }
 
-     // Allow columns to stretch full width below their breakpoints
-     @for $i from 1 through $columns {
-       .col#{$infix}-#{$i} {
-         @extend %grid-column;
-       }
-     }
+      //
+      // FIFTHS GRID
+      //
+      .col#{$infix}-fifths {
+        @include make-fix-col(20);
+      }
 
-     .col#{$infix},
-     .col#{$infix}-auto {
-       @extend %grid-column;
-     }
+      //
+      // PERCENTAGE GRID
+      //
+      @if $enable-percentage-grid {
+        $step: 5;
 
-     @include up($breakpoint, $breakpoints) {
+        @for $i from 1 through ceil(100 / $step) {
+          $value: $i * $step;
 
-       // Provide basic `.col-{bp}` classes for equal-width flexbox columns
-       .col#{$infix} {
-         flex-basis: 0;
-         flex-grow: 1;
-         max-width: 100%;
-       }
+          .col#{$infix}_#{$value} {
+            @include make-fix-col($value);
+          }
+        }
+      }
 
-       .col#{$infix}-auto {
-         flex: 0 0 auto;
-         width: auto;
-         max-width: 100%; // Reset earlier grid tiers
-       }
+      //
+      // GRID ORDER
+      //
+      .order#{$infix}-first {
+        order: -1;
+      }
 
-       @for $i from 1 through $columns {
-         .col#{$infix}-#{$i} {
-           @include make-col($i, $columns);
-         }
-       }
+      .order#{$infix}-last {
+        order: $columns + 1;
+      }
 
-       $step: 5;
+      @for $i from 0 through $columns {
+        .order#{$infix}-#{$i} {
+          order: $i;
+        }
+      }
+    }
+  }
+}
 
-       @for $i from 1 through ceil(100/$step) {
-         $value: $i*$step;
+@if $enable-grid-classes {
+  @include make-grid-columns();
+  @include make-grid-containers();
 
-         //  .col#{$infix}_#{$value} {
-         //    @include make-fix-col($value);
-         //  }
-       }
+  .row {
+    @include make-row();
+    @include make-gap();
+  }
 
-       .order#{$infix}-first {
-         order: -1;
-       }
-
-       .order#{$infix}-last {
-         order: $columns + 1;
-       }
-
-       @for $i from 0 through $columns {
-         .order#{$infix}-#{$i} {
-           order: $i;
-         }
-       }
-
-     }
-   }
- }
-
-
- @include make-gap();
-
- @include make-grid-columns();
- @include make-grid-containers();
-
- .row {
-   @include make-row();
-   @include make-gap();
- }
+  [class^="col"],
+  [class^=" col"],
+  [class^="col-"],
+  [class*=" col-"] {
+    &.gap-0 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

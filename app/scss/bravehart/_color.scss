@@ -1,25 +1,54 @@
- $primary-dark: darken($primary, 3%) !default;
- $primary-light: lighten($primary, 3%) !default;
- $secondary: lighten($primary, 37.5%) !default;
- $secondary-dark: darken($secondary, 3%) !default;
- $secondary-light: lighten($secondary, 3%) !default;
+$primary-dark: darken($primary, 3%) !default;
+$primary-light: lighten($primary, 3%) !default;
+$secondary: lighten($primary, 37.5%) !default;
+$secondary-dark: darken($secondary, 3%) !default;
+$secondary-light: lighten($secondary, 3%) !default;
 
- // Gray colors 
- $gray: lighten($dark, 55%) !default;
- $gray-dark: darken($gray, 30%) !default;
- $gray-light: lighten($gray, 20%) !default;
+// Gray colors
+$gray: lighten($dark, 55%) !default;
+$gray-dark: darken($gray, 30%) !default;
+$gray-light: lighten($gray, 20%) !default;
 
- $border: lighten($dark, 65%) !default;
- $border-dark: darken($border, 10%) !default;
- $border-light: lighten($border, 8%) !default;
- $bg: lighten($dark, 75%) !default;
- $bg-dark: darken($bg, 3%) !default;
- $bg-light: $light !default;
+$border: lighten($dark, 65%) !default;
+$border-dark: darken($border, 10%) !default;
+$border-light: lighten($border, 8%) !default;
+$bg: lighten($dark, 75%) !default;
+$bg-dark: darken($bg, 3%) !default;
+$bg-light: $light !default;
 
+// Other colors
+$body-bg: $bg-light !default;
+$body-font: lighten($dark, 5%) !default;
+$link: $primary !default;
+$link-dark: darken($link, 10%) !default;
+$link-light: lighten($link, 10%) !default;
 
- // Other colors
- $body-bg: $bg-light !default;
- $body-font: lighten($dark, 5%) !default;
- $link: $primary !default;
- $link-dark: darken($link, 10%) !default;
- $link-light: lighten($link, 10%) !default;
+.full {
+  background: $gray;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.bg-active {
+  background: blue;
+  color: white;
+}
+
+.bg-primary {
+  background: purple;
+}
+.bg-secondary {
+  background: green;
+}
+.inner {
+  background: yellow;
+  padding: 1rem;
+  color: black;
+}
+
+.col {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
