@@ -22,3 +22,87 @@ $body-font: lighten($dark, 5%) !default;
 $link: $primary !default;
 $link-dark: darken($link, 10%) !default;
 $link-light: lighten($link, 10%) !default;
+
+$color-var:5%;
+
+$color-list: (primary:$primary,
+red:#E3342F,
+grey:#B8C2CC,
+orange:#F6993F,
+yellow: #FFED4A,
+green:#38C172,
+teal:#4DC0B5,
+blue:#3490DC,
+indigo:#6574CD,
+purple:#9561E2,
+pink:#F66D9B);
+
+
+$orange-list:(Lightest:#FFF5EB,
+Lighter :#FCD9B6,
+Light :#FAAD63,
+Base :#F6993F,
+Dark :#DE751F,
+Darker :#613B1F,
+Darkest :#462A16);
+
+@function color-diff($a, $b) {
+  $sat: saturation($a) - saturation($b);
+  $lig: lightness($a) - lightness($b);
+  $fn-sat: if($sat > 0, 'desaturate', 'saturate');
+  $fn-lig: if($lig > 0, 'darken', 'lighten');
+
+  @return (adjust-hue: -(hue($a) - hue($b)),
+  #{$fn-sat}: abs($sat),
+  #{$fn-lig}: abs($lig));
+}
+
+
+@each $key,
+$value in $orange-list {
+  $base: #F6993F;
+  @debug $value;
+  @debug lightness($value);
+  @debug hue($value);
+  @debug color-diff($base, $value);
+  @debug "--------";
+
+}
+
+
+@mixin colorClass($name,
+$color) {
+  .#{$name} {
+    color: $color;
+  }
+
+  .bg-#{$name} {
+    background-color: $color;
+  }
+
+  .border-#{$name} {
+    border-color: $color;
+  }
+}
+
+
+@each $key,
+$value in $color-list {
+
+  @for $i from 1 through ceil(300 / 100) {
+    $num: 40% - ($color-var*$i);
+    $color: lighten($value, $num);
+    @include colorClass(#{$key}-#{$i * 100},
+    $color);
+  }
+
+  @include colorClass(#{$key}-400,
+  $value);
+
+  @for $i from 5 through ceil(700 / 100) {
+    $num: $color-var*$i;
+    $color: darken($value, $num);
+    @include colorClass(#{$key}-#{$i * 100},
+    $color);
+  }
+}

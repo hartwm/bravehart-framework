@@ -77,7 +77,7 @@ gulp.task('scripts', function() {
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(babel())
     .pipe(terser())
-    .pipe(concat('main.js'))
+    // .pipe(concat('main.js'))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('public/js'))
 });
