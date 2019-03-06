@@ -9,7 +9,7 @@
 @function divisable($number, $base: $base-font-size, $columns: $grid-columns) {
   $multiplier: strip-unit($base) * $columns;
   $max: (floor(strip-unit($number) / $columns) * $multiplier) / strip-unit($base) * 1em;
-  @return if($max !=0, $max, 100%);
+  @return if($max !=0, $max, null);
 }
 
 // https://css-tricks.com/snippets/sass/power-function/

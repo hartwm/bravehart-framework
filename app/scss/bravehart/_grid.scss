@@ -50,6 +50,11 @@
     padding-left: $gutter / 2;
   }
 
+  .container-full {
+    max-width: 100%;
+    @extend %container;
+  }
+
   @each $breakpoint in map-keys($breakpoints) {
     $infix: breakpoint-infix($breakpoint, $breakpoints);
     $min: map-get($breakpoints, $breakpoint);
@@ -58,6 +63,12 @@
     .container#{$infix} {
       max-width: $max;
       @extend %container;
+    }
+
+    @include up($breakpoint, $breakpoints) {
+      .container {
+        max-width: $max;
+      }
     }
   }
 }
