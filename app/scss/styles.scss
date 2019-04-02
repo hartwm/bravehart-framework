@@ -1,170 +1,24 @@
-// @import "bravehart/bravehart";
+@import "bravehart/bravehart";
 
-$green: #28c652;
-$black: #000;
-$white: #fff;
-$red: #d81f26;
-$blue: #3591f7;
+.bg-active {
+  margin: 1rem auto;
 
-$grid-breakpoints: (
-  null: 0,
-  phone: 30em,
-  tablet: 48em,
-  laptop: 85em
-) !default;
-
-@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
-  $min: map-get($breakpoints, $name);
-  @return if($min !=0, $min, null);
-}
-
-@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
-  @return if(breakpoint-min($name, $breakpoints) ==null, "", "-#{$name}");
-}
-
-@mixin up($name, $breakpoints: $grid-breakpoints) {
-  $min: breakpoint-min($name, $breakpoints);
-
-  @if $min {
-    @media (min-width: $min) {
-      @content;
-    }
-  } @else {
-    @content;
+  .inner {
+    background: $black-200;
+    height: 100%;
   }
-}
-
-.row.no-gutters > [class^="col-"],
-.row.no-gutters > [class*=" col-"] {
-  padding-right: 0;
-  padding-left: 0;
-}
-
-#davis-lp {
-  img {
-    max-width: 100%;
-  }
-  .hero-header {
-    img {
-      display: block;
+  .col-12 {
+    height: 20vh;
+    background: $primary;
+    &:nth-child(1) {
+      background: $error;
     }
-    .text-inner {
-      padding: 5rem;
+    &:nth-child(3) {
+      background: $success;
     }
   }
-
-  img {
-    max-width: 100%;
+  background: $warning;
+  .row {
+    background: purple;
   }
-
-  .main-content {
-    background: #021524;
-    background: radial-gradient(circle at left 80px top -20px, #025b7e, #021524, #000509);
-    padding-top: 30px;
-    padding-bottom: 30px;
-    color: $white;
-    line-height: 1.75;
-    @include up(phone) {
-      padding-top: 60px;
-      padding-bottom: 60px;
-    }
-  }
-
-  .logo-wrapper {
-    background: url(../img/3-15-bg.png) no-repeat left center $blue;
-    text-align: center;
-    padding: 2em;
-    color: $white;
-    h3 {
-      margin: 0.5em;
-      text-transform: none;
-      font-style: italic;
-      letter-spacing: 1px;
-    }
-    p {
-      font-size: 1.2em;
-    }
-  }
-
-  .main-img {
-    width: 240px;
-    margin: 10px auto;
-    display: block;
-    @include up(tablet) {
-      width: 100%;
-    }
-  }
-
-  .main-btn {
-    color: $white;
-    background: $blue;
-    text-transform: uppercase;
-    padding: 10px 30px;
-    font-weight: bold;
-    display: inline-block;
-    &:hover {
-      background: $red;
-    }
-  }
-
-  h2 {
-    color: $red;
-    line-height: 1.2;
-    font-size: 24px;
-    text-transform: none;
-    @include up(phone) {
-      font-size: 38px;
-    }
-  }
-
-  h3 {
-    margin-bottom: 32px;
-    line-height: 1.2;
-    font-size: 20px;
-    @include up(phone) {
-      font-size: 28px;
-    }
-  }
-}
-
-.specials-bar {
-  background: #d81f26;
-  color: white;
-}
-.tire-pic {
-  max-width: 260px;
-}
-.specials-bar {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-.specials-bar p {
-  color: black;
-  line-height: 1.5;
-  margin-bottom: 1rem;
-}
-.specials-bar a {
-  color: white;
-  padding: 1rem;
-  transition: color 300ms ease-in;
-}
-.specials-bar a:hover {
-  color: rgba(0, 0, 0, 0.7);
-}
-.specials-bar a:first-child {
-  border-right: 1px solid rgba(0, 0, 0, 0.3);
-}
-.overhang-image {
-  position: relative;
-  top: -60px;
-}
-h2.title {
-  color: black;
-  font-family: "Exo", sans-serif;
-  margin-bottom: 2rem;
-  text-transform: initial;
-  font-weight: bold;
-}
-h2.title .inverse {
-  color: white;
 }

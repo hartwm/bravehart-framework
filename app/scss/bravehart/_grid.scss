@@ -9,8 +9,6 @@
   width: 100%;
   margin: auto;
   position: relative;
-  padding-right: $gutter;
-  padding-left: $gutter;
 }
 
 @mixin make-col($size, $columns: $grid-columns) {
@@ -29,6 +27,14 @@
     @include up($breakpoint, $breakpoints) {
       @each $key, $value in $map {
         &.gap#{$infix}-#{$key} {
+          padding-right: $value !important;
+          padding-left: $value !important;
+
+          .row {
+            margin-right: -$value !important;
+            margin-left: -$value !important;
+          }
+
           [class^="col"],
           [class^=" col"],
           [class^="col-"],
@@ -67,9 +73,6 @@
 
     @include up($breakpoint, $breakpoints) {
       .container {
-        max-width: $max;
-      }
-      .container#{$infix} {
         max-width: $max;
       }
     }
@@ -179,19 +182,8 @@
 @if $enable-grid-classes {
   @include make-grid-columns();
   @include make-grid-containers();
-
+  @include make-gap();
   .row {
     @include make-row();
-    @include make-gap();
-  }
-
-  [class^="col"],
-  [class^=" col"],
-  [class^="col-"],
-  [class*=" col-"] {
-    &.gap-0 {
-      padding-left: 0;
-      padding-right: 0;
-    }
   }
 }
