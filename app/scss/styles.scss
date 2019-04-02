@@ -7,17 +7,17 @@
     background: $black-200;
     height: 100%;
   }
-  .col-12 {
+  .col {
     height: 20vh;
-    background: $primary;
-    &:nth-child(1) {
-      background: $error;
-    }
-    &:nth-child(3) {
-      background: $success;
-    }
+    //   background: $primary;
+    //   &:nth-child(1) {
+    //     background: $error;
+    //   }
+    //   &:nth-child(3) {
+    //     background: $success;
+    //   }
   }
-  background: $warning;
+  // background: $warning;
   .row {
     background: purple;
   }

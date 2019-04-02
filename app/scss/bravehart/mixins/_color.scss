@@ -37,6 +37,7 @@
     // middle eg 500
     $colors: map-merge($colors, (#{$color}-50: lighten($value, 38.7)));
     $colors: map-merge($colors, (#{$color}-#{$variations/2 * 100}: $value));
+    $colors: map-merge($colors, (#{$color}: $value));
   }
   @return $colors;
 }
