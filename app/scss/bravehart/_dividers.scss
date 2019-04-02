@@ -1,0 +1,94 @@
+.divider-center {
+  position: relative;
+  text-align: center;
+  margin-bottom: 45px;
+
+  &:before,
+  &:after {
+    position: absolute;
+    display: block;
+    content: "";
+    height: 4px;
+    text-align: center;
+    bottom: -20px;
+    height: 1px;
+    left: 50%;
+    transform: translate(-50%, 0%) scale(0.65);
+  }
+
+  &:before {
+    background-color: #ccc;
+    width: 500px;
+  }
+
+  &:after {
+    z-index: 3;
+    width: 100px;
+    background-color: #c29765;
+  }
+}
+
+.divider-left {
+  position: relative;
+  text-align: left;
+  // margin-bottom: 45px;
+
+  &:before,
+  &:after {
+    position: absolute;
+    display: block;
+    content: "";
+    height: 4px;
+    text-align: center;
+    height: 1px;
+    top: 100%;
+    left: -15px;
+    transform: scale(0.65);
+  }
+
+  &:before {
+    background-color: #ccc;
+    width: 300px;
+  }
+
+  &:after {
+    z-index: 3;
+    width: 100px;
+    background-color: #c29765;
+  }
+}
+
+.hr-text {
+  margin: 0;
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  text-align: center;
+  height: 1.5em;
+  opacity: 0.5;
+  &:before {
+    content: "";
+    // use the linear-gradient for the fading effect
+    // use a solid background color for a solid bar
+    background: linear-gradient(to right, transparent, $secondary, transparent);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+  }
+  &:after {
+    content: attr(data-content);
+    position: relative;
+    display: inline-block;
+    color: black;
+
+    padding: 0 0.5em;
+    line-height: 1.5em;
+    color: $secondary;
+    // this is really the only tricky part, you need to specify the background color of the container element...
+    background-color: #fcfcfa;
+  }
+}

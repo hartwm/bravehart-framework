@@ -1,0 +1,37 @@
+$red: $error;
+$green: $success;
+
+%alert {
+  padding: 1rem;
+  color: $red;
+  background: lighten($red, 40%);
+  border: 1px solid lighten($red, 20%);
+  margin-bottom: 1rem;
+}
+%success {
+  padding: 1rem;
+  background: lighten($green, 40%);
+  border: 1px solid lighten($green, 20%);
+  margin-bottom: 1rem;
+}
+
+.validation_error {
+  @extend %alert;
+}
+
+.gfield_required {
+  color: $red;
+  margin-left: 5px;
+}
+
+.validation_message {
+  color: $red;
+  @extend .sm;
+  padding: 0.25rem 0;
+}
+
+.gform_confirmation_wrapper {
+}
+.gform_confirmation_message {
+  @extend %success;
+}

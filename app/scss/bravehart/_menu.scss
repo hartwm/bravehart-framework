@@ -1,0 +1,45 @@
+.horizontal-nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 100%;
+  flex-direction: row;
+  li {
+    position: relative;
+  }
+  a {
+    display: flex;
+    height: 100%;
+    align-items: center;
+  }
+  span {
+    position: relative;
+  }
+}
+
+.logo-link {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.dropdown-menu {
+  position: absolute;
+  z-index: 100;
+  width: 240px;
+  transform-origin: center top;
+  display: none;
+  #offcanvas & {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding-left: 2rem;
+    border-left: 2px solid $gray-700;
+  }
+}
+
+#page .dropdown:hover > .dropdown-menu {
+  animation: fadeIn 300ms ease-in;
+  display: block;
+}

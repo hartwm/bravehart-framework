@@ -1,108 +1,80 @@
-$primary-dark: darken($primary, 3%) !default;
-$primary-light: lighten($primary, 3%) !default;
-$secondary: lighten($primary, 37.5%) !default;
-$secondary-dark: darken($secondary, 3%) !default;
-$secondary-light: lighten($secondary, 3%) !default;
+$primary-50: getColor("primary-50");
+$primary-100: getColor("primary-100");
+$primary-200: getColor("primary-200");
+$primary-300: getColor("primary-300");
+$primary-400: getColor("primary-400");
+$primary-500: getColor("primary-500");
+$primary-600: getColor("primary-600");
+$primary-700: getColor("primary-700");
+$primary-800: getColor("primary-800");
+$primary-900: getColor("primary-900");
 
-// Gray colors
-$gray: lighten($dark, 55%) !default;
-$gray-dark: darken($gray, 30%) !default;
-$gray-light: lighten($gray, 20%) !default;
+$secondary-50: getColor("secondary-50");
+$secondary-100: getColor("secondary-100");
+$secondary-200: getColor("secondary-200");
+$secondary-300: getColor("secondary-300");
+$secondary-400: getColor("secondary-400");
+$secondary-500: getColor("secondary-500");
+$secondary-600: getColor("secondary-600");
+$secondary-700: getColor("secondary-700");
+$secondary-800: getColor("secondary-800");
+$secondary-900: getColor("secondary-900");
 
-$border: lighten($dark, 65%) !default;
-$border-dark: darken($border, 10%) !default;
-$border-light: lighten($border, 8%) !default;
-$bg: lighten($dark, 75%) !default;
-$bg-dark: darken($bg, 3%) !default;
-$bg-light: $light !default;
+$light-50: getColor("light-50");
+$light-100: getColor("light-100");
+$light-200: getColor("light-200");
+$light-300: getColor("light-300");
+$light-400: getColor("light-400");
+$light-500: getColor("light-500");
+$light-600: getColor("light-600");
+$light-700: getColor("light-700");
+$light-800: getColor("light-800");
+$light-900: getColor("light-900");
 
-// Other colors
-$body-bg: $bg-light !default;
-$body-font: lighten($dark, 5%) !default;
-$link: $primary !default;
-$link-dark: darken($link, 10%) !default;
-$link-light: lighten($link, 10%) !default;
+$dark-50: getColor("dark-50");
+$dark-100: getColor("dark-100");
+$dark-200: getColor("dark-200");
+$dark-300: getColor("dark-300");
+$dark-400: getColor("dark-400");
+$dark-500: getColor("dark-500");
+$dark-600: getColor("dark-600");
+$dark-700: getColor("dark-700");
+$dark-800: getColor("dark-800");
+$dark-900: getColor("dark-900");
 
-$color-var:5%;
+$black-100: rgba($black, 0.1);
+$black-200: rgba($black, 0.2);
+$black-300: rgba($black, 0.3);
+$black-400: rgba($black, 0.4);
+$black-500: rgba($black, 0.5);
+$black-600: rgba($black, 0.6);
+$black-700: rgba($black, 0.7);
+$black-800: rgba($black, 0.8);
+$black-900: rgba($black, 0.9);
 
-$color-list: (primary:$primary,
-red:#E3342F,
-grey:#B8C2CC,
-orange:#F6993F,
-yellow: #FFED4A,
-green:#38C172,
-teal:#4DC0B5,
-blue:#3490DC,
-indigo:#6574CD,
-purple:#9561E2,
-pink:#F66D9B);
+$white-100: rgba($white, 0.1);
+$white-200: rgba($white, 0.2);
+$white-300: rgba($white, 0.3);
+$white-400: rgba($white, 0.4);
+$white-500: rgba($white, 0.5);
+$white-600: rgba($white, 0.6);
+$white-700: rgba($white, 0.7);
+$white-800: rgba($white, 0.8);
+$white-900: rgba($white, 0.9);
 
+$transparent: transparent;
 
-$orange-list:(Lightest:#FFF5EB,
-Lighter :#FCD9B6,
-Light :#FAAD63,
-Base :#F6993F,
-Dark :#DE751F,
-Darker :#613B1F,
-Darkest :#462A16);
-
-@function color-diff($a, $b) {
-  $sat: saturation($a) - saturation($b);
-  $lig: lightness($a) - lightness($b);
-  $fn-sat: if($sat > 0, 'desaturate', 'saturate');
-  $fn-lig: if($lig > 0, 'darken', 'lighten');
-
-  @return (adjust-hue: -(hue($a) - hue($b)),
-  #{$fn-sat}: abs($sat),
-  #{$fn-lig}: abs($lig));
+@mixin gradient-transparent($direction: "90deg", $color: $primary) {
+  background: linear-gradient($direction, $color, $transparent);
 }
 
+@mixin gradient($direction: 90deg, $color: $primary) {
+  $gradient-colors: (
+    color: $color
+  );
 
-@each $key,
-$value in $orange-list {
-  $base: #F6993F;
-  @debug $value;
-  @debug lightness($value);
-  @debug hue($value);
-  @debug color-diff($base, $value);
-  @debug "--------";
-
-}
-
-
-@mixin colorClass($name,
-$color) {
-  .#{$name} {
-    color: $color;
-  }
-
-  .bg-#{$name} {
-    background-color: $color;
-  }
-
-  .border-#{$name} {
-    border-color: $color;
-  }
-}
-
-
-@each $key,
-$value in $color-list {
-
-  @for $i from 1 through ceil(300 / 100) {
-    $num: 40% - ($color-var*$i);
-    $color: lighten($value, $num);
-    @include colorClass(#{$key}-#{$i * 100},
-    $color);
-  }
-
-  @include colorClass(#{$key}-400,
-  $value);
-
-  @for $i from 5 through ceil(700 / 100) {
-    $num: $color-var*$i;
-    $color: darken($value, $num);
-    @include colorClass(#{$key}-#{$i * 100},
-    $color);
-  }
+  $var: colorMap($gradient-colors, 10);
+  $start: map-get($var, "color-50");
+  $stop: map-get($var, "color-300");
+  background: linear-gradient($direction, $start, $stop);
 }

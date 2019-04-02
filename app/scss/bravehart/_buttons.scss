@@ -45,6 +45,25 @@ $transition: 400ms;
   }
 }
 
+// WIP
+@mixin button-outline-fill($color: $primary) {
+  display: inline-block;
+  text-align: center;
+  transition: $transition color ease-in-out, $transition background ease-in-out, $transition border-color ease-in-out;
+  color: $color;
+  border: 1px solid;
+  border-color: $color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $color;
+    border-color: $color;
+    color: findColorInvert($color);
+    cursor: pointer;
+  }
+}
+
 .btn {
   padding: 1rem;
   @include button($primary);
@@ -52,4 +71,28 @@ $transition: 400ms;
 .btn-outline {
   padding: 1rem;
   @include button-outline($primary);
+}
+.btn-secondary {
+  padding: 1rem;
+  @include button($secondary);
+}
+.btn-outline-secondary {
+  padding: 1rem;
+  @include button-outline($secondary);
+}
+
+.link {
+  color: $primary;
+  &:after {
+    content: "\27F6";
+    position: relative;
+    padding-left: 0.5rem;
+    display: inline-block;
+    @include transition;
+  }
+  &:hover {
+    &:after {
+      transform: translateX(0.5rem);
+    }
+  }
 }

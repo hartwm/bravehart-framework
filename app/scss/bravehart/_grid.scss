@@ -1,15 +1,16 @@
 @mixin make-row($gutter: $grid-gutter) {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -$gutter / 2;
-  margin-left: -$gutter / 2;
+  margin-right: -$gutter;
+  margin-left: -$gutter;
 }
 
 @mixin make-container($gutter: $grid-gutter) {
+  width: 100%;
   margin: auto;
   position: relative;
-  padding-right: $gutter / 2;
-  padding-left: $gutter / 2;
+  padding-right: $gutter;
+  padding-left: $gutter;
 }
 
 @mixin make-col($size, $columns: $grid-columns) {
@@ -22,19 +23,18 @@
   max-width: percentage($size / 100);
 }
 
-@mixin make-gap($count: 8, $breakpoints: $grid-breakpoints) {
+@mixin make-gap($map: $spacing-list, $breakpoints: $grid-breakpoints) {
   @each $breakpoint in map-keys($breakpoints) {
     $infix: breakpoint-infix($breakpoint, $breakpoints);
-
     @include up($breakpoint, $breakpoints) {
-      @for $i from 0 through $count {
-        &.gap#{$infix}-#{$i} {
+      @each $key, $value in $map {
+        &.gap#{$infix}-#{$key} {
           [class^="col"],
           [class^=" col"],
           [class^="col-"],
           [class*=" col-"] {
-            padding-right: ($grid-gutter/$count) * $i;
-            padding-left: ($grid-gutter/$count) * $i;
+            padding-right: $value;
+            padding-left: $value;
           }
         }
       }
@@ -46,8 +46,8 @@
   %container {
     margin: auto;
     position: relative;
-    padding-right: $gutter / 2;
-    padding-left: $gutter / 2;
+    padding-right: $gutter;
+    padding-left: $gutter;
   }
 
   .container-full {
@@ -69,6 +69,9 @@
       .container {
         max-width: $max;
       }
+      .container#{$infix} {
+        max-width: $max;
+      }
     }
   }
 }
@@ -78,8 +81,8 @@
   %grid-column {
     position: relative;
     width: 100%;
-    padding-right: $gutter / 2;
-    padding-left: $gutter / 2;
+    padding-right: $gutter;
+    padding-left: $gutter;
   }
 
   @each $breakpoint in map-keys($breakpoints) {

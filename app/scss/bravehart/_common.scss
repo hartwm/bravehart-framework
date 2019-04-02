@@ -1,0 +1,172 @@
+/*
+
+1. Toggle Menu
+2. Aspect Ratio
+
+
+
+*/
+
+/* Toggle Menu Hamburger */
+
+.toggle-menu {
+  float: right;
+}
+.toggle-menu {
+  cursor: pointer;
+  padding: 10px 50px 16px 15px;
+}
+.toggle-menu span {
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.toggle-menu span,
+.toggle-menu span:before,
+.toggle-menu span:after {
+  cursor: pointer;
+  border-radius: 4px;
+  height: 5px;
+  width: 35px;
+  background: $gray-700;
+  position: absolute;
+  display: block;
+  content: "";
+}
+.toggle-menu span:before {
+  top: -10px;
+}
+.toggle-menu span:after {
+  bottom: -10px;
+}
+
+/*
+***************
+2. Aspect Ratio
+***************
+*/
+.aspect {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  &::before {
+    padding-top: 75%;
+    display: block;
+    content: "";
+  }
+  > img,
+  figure,
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &-16x9 {
+    @extend .aspect;
+    &::before {
+      padding-top: 9/16 * 100%;
+    }
+  }
+  &-21x9 {
+    @extend .aspect;
+    @include up(md) {
+      &::before {
+        padding-top: 9/21 * 100%;
+      }
+    }
+  }
+  &-4x3 {
+    @extend .aspect;
+    &::before {
+      padding-top: 3/4 * 100%;
+    }
+  }
+  &-1x1 {
+    @extend .aspect;
+    &::before {
+      padding-top: 100%;
+    }
+  }
+  &-3x2 {
+    @extend .aspect;
+    &::before {
+      padding-top: 2/3 * 100%;
+    }
+  }
+  &-2x1 {
+    @extend .aspect;
+    &::before {
+      padding-top: 50%;
+    }
+  }
+  &-3x1 {
+    @extend .aspect;
+    @include up(md) {
+      &::before {
+        padding-top: 1/3 * 100%;
+      }
+    }
+  }
+}
+
+/*
+***************
+3. Image Cover
+***************
+*/
+.cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/*
+***************
+3. Overlay Fade to White
+***************
+*/
+.fade {
+  position: relative;
+  &::before {
+    @include absolute;
+    background: linear-gradient(180deg, $white, transparent);
+  }
+  &-down {
+    @extend .fade;
+    &::before {
+      background: linear-gradient(0deg, $white, transparent);
+    }
+  }
+  &-up {
+    @extend .fade;
+    &::before {
+      background: linear-gradient(180deg, $white, transparent);
+    }
+  }
+  &-left {
+    @extend .fade;
+    &:before {
+      background: linear-gradient(90deg, $white, transparent);
+    }
+  }
+  &-right {
+    @extend .fade;
+    &:before {
+      background: linear-gradient(-90deg, $white, transparent);
+    }
+  }
+}
+
+/*
+***************
+4. Borders
+***************
+*/

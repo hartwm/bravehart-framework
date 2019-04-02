@@ -12,43 +12,94 @@ $grid-columns: 12 !default;
 $grid-gutter: 1rem !default;
 $grid-breakpoints: (
   null: 0,
-  xs: 30em,
-  phone: 30em,
-  sm: 48em,
-  tablet: 48em,
-  md: 64em,
-  lg: 80em,
-  laptop: 85em,
-  xl: 85em,
-  xxl: 116em,
-  desktop: 116em
+  xs: 30rem,
+  phone: 30rem,
+  sm: 48rem,
+  tablet: 48rem,
+  md: 64rem,
+  lg: 80rem,
+  laptop: 85rem,
+  xl: 85rem,
+  xxl: 116rem,
+  desktop: 116rem
 ) !default;
 
 //
 // Color
 //
-$primary: #d62b2b !default;
+$primary: #01b1ff !default;
+$secondary: #bc083e !default;
 $dark: #303742 !default;
 $light: #fff !default;
 $success: #32b643 !default;
 $warning: #ffb700 !default;
 $error: #e85600 !default;
 
+$color-list: (
+  primary: $primary,
+  secondary: $secondary,
+  dark: $dark,
+  light: $light,
+  success: $success,
+  warning: $warning,
+  error: $error
+);
+
+//
+// Grays
+//
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
 //
 // Fonts
 //
-$base-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto !default;
+$base-font-family: "Montserrat", -apple-systrem, systrem-ui, BlinkMacSystremFont, "Segoe UI", Roboto, sans-serif !default;
 $mono-font-family: "SF Mono", "Segoe UI Mono", "Roboto Mono", Menlo, Courier, monospace !default;
 $body-font-family: $base-font-family !default;
 $base-font-size: 16px !default;
 
+$font: $base-font-family;
+$heading: "Playfair Display", serif;
+$cursive: cursive;
+$bold: 700;
+$bold-heading: 700;
+
 //
 // Spacing
 //
-$spacing-xxl: 3em !default;
-$spacing-xl: 2em !default;
-$spacing-lg: 1.5em !default;
-$spacing-md: 1em !default;
-$spacing-sm: 0.5em !default;
-$spacing-xs: 0.25em !default;
-$spacing-xxs: 0.125em !default;
+$spacing-super: 4rem !default;
+$spacing-xxl: 3rem !default;
+$spacing-xl: 2rem !default;
+$spacing-lg: 1.5rem !default;
+$spacing-md: 1rem !default;
+$spacing-sm: 0.5rem !default;
+$spacing-xs: 0.25rem !default;
+$spacing-xxs: 0.125rem !default;
+$spacing-none: 0 !default;
+
+$spacing-list: (
+  0: $spacing-none,
+  1: $spacing-xxs,
+  2: $spacing-xs,
+  3: $spacing-sm,
+  4: $spacing-md,
+  5: $spacing-lg,
+  6: $spacing-xl,
+  7: $spacing-xxl,
+  8: $spacing-super
+) !default;
+
+//
+// Transitions
+//
+$transition-base: all 300ms ease-in-out;

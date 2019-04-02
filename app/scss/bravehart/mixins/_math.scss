@@ -8,7 +8,7 @@
 
 @function divisable($number, $base: $base-font-size, $columns: $grid-columns) {
   $multiplier: strip-unit($base) * $columns;
-  $max: (floor(strip-unit($number) / $columns) * $multiplier) / strip-unit($base) * 1em;
+  $max: (floor(strip-unit($number) / $columns) * $multiplier) / strip-unit($base) * 1rem;
   @return if($max !=0, $max, null);
 }
 

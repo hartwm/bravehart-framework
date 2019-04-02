@@ -7,23 +7,42 @@
   }
 }
 
+@mixin padding($small: 2rem, $medium: $small, $large: $medium) {
+  padding-top: $small;
+  padding-bottom: $small;
 
-// @mixin padding($small:2rem, $medium:$small, $large:$medium) {
-//   padding-top: $small;
-//   padding-bottom: $small;
+  @include up(tablet) {
+    padding-top: $medium;
+    padding-bottom: $medium;
+  }
 
+  @include up(laptop) {
+    padding-top: $large;
+    padding-bottom: $large;
+  }
+}
+@mixin padding-bottom($small: 2rem, $medium: $small, $large: $medium) {
+  padding-bottom: $small;
 
-//   @include break-md() {
-//     padding-top: $medium;
-//     padding-bottom: $medium;
-//   }
+  @include up(tablet) {
+    padding-bottom: $medium;
+  }
 
-//   @include break-lg() {
-//     padding-top: $large;
-//     padding-bottom: $large;
-//   }
-// }
+  @include up(laptop) {
+    padding-bottom: $large;
+  }
+}
+@mixin padding-top($small: 2rem, $medium: $small, $large: $medium) {
+  padding-top: $small;
 
+  @include up(tablet) {
+    padding-top: $medium;
+  }
+
+  @include up(laptop) {
+    padding-top: $large;
+  }
+}
 
 %visuallyhidden {
   margin: -1px;
@@ -36,7 +55,6 @@
   position: absolute;
 }
 
-
 @mixin vertical-center {
   position: relative;
   top: 50%;
@@ -44,7 +62,6 @@
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-
 
 @mixin input-placeholder {
   &.placeholder {
@@ -82,23 +99,17 @@
     border-right: $size solid transparent;
     border-top: $size solid $color;
     margin-top: 0 - round($size / 2.5);
-  }
-
-  @else if $direction==up {
+  } @else if $direction==up {
     border-left: $size solid transparent;
     border-right: $size solid transparent;
     border-bottom: $size solid $color;
     margin-bottom: 0 - round($size / 2.5);
-  }
-
-  @else if $direction==right {
+  } @else if $direction==right {
     border-top: $size solid transparent;
     border-bottom: $size solid transparent;
     border-left: $size solid $color;
     margin-right: -$size;
-  }
-
-  @else if $direction==left {
+  } @else if $direction==left {
     border-top: $size solid transparent;
     border-bottom: $size solid transparent;
     border-right: $size solid $color;
@@ -106,9 +117,8 @@
   }
 }
 
-
 @mixin responsive-ratio($x, $y, $pseudo: false) {
-  $padding: unquote(($y / $x) * 100 + '%');
+  $padding: unquote(($y / $x) * 100 + "%");
 
   @if $pseudo {
     &:before {
@@ -116,14 +126,12 @@
       width: 100%;
       padding-top: $padding;
     }
-  }
-
-  @else {
+  } @else {
     padding-top: $padding;
   }
 }
 
-@mixin absolute($display: block, $pos: absolute, $content: '') {
+@mixin absolute($display: block, $pos: absolute, $content: "") {
   content: $content;
   display: $display;
   position: $pos;
@@ -140,8 +148,7 @@
   }
 }
 
-
-@mixin pseudo($display: block, $pos: absolute, $content: '') {
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
   content: $content;
   display: $display;
   position: $pos;
