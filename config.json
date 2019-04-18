@@ -1,9 +1,8 @@
 {
   "browserSyncOptions": {
+    "proxy": "localhost:8010",
     "notify": false,
-    "server": {
-      "baseDir": "./public"
-    }
+    "baseDir": "./public"
   },
   "browserSyncWatchFiles": [
     "./css/*.css",

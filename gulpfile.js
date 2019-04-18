@@ -16,24 +16,29 @@ var del = require('del');
 var rename = require('gulp-rename');
 var postcss = require('gulp-postcss');
 var precss = require('precss');
-
+var php = require('gulp-connect-php');
 var browserSync = require('browser-sync')
   .create();
 var reload = browserSync.reload;
 var stream = browserSync.stream;
+var pug = require('gulp-pug');
 
 // Configuration file to keep your code DRY
 var cfg = require('./config.json');
 var paths = cfg.paths;
 
+gulp.task('php', function () {
+  php.server({ base: cfg.browserSyncOptions.baseDir, port: 8010, keepalive: true });
+});
 
-gulp.task('browser-sync', function() {
+
+gulp.task('browser-sync', ['php'], function () {
   browserSync.init(cfg.browserSyncWatchFiles, cfg.browserSyncOptions);
 });
 
 
-var opacity = function(css, opts) {
-  css.eachDecl(function(decl) {
+var opacity = function (css, opts) {
+  css.eachDecl(function (decl) {
     if (decl.prop === 'opacity') {
       decl.parent.insertAfter(decl, {
         prop: '-ms-filter',
@@ -44,7 +49,7 @@ var opacity = function(css, opts) {
 };
 
 
-gulp.task('styles', function() {
+gulp.task('styles', function () {
 
   var plugins = [
     autoprefixer({
@@ -56,7 +61,7 @@ gulp.task('styles', function() {
 
   return gulp.src('app/scss/**/*.scss') // Gets all files ending with .scss in app/scss
     .pipe(plumber({
-      errorHandler: function(err) {
+      errorHandler: function (err) {
         console.log(err);
         this.emit('end');
       }
@@ -70,9 +75,15 @@ gulp.task('styles', function() {
     .pipe(browserSync.stream())
 });
 
+gulp.task('views', function buildHTML() {
+  return gulp.src('app/views/**/*.pug')
+    .pipe(pug({
+      // Your options in here.
+    }))
+    .pipe(gulp.dest('public'))
+});
 
-
-gulp.task('scripts', function() {
+gulp.task('scripts', function () {
   return gulp.src('app/js/*.js') // Gets all files ending with .scss in app/scss
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(babel())
@@ -82,13 +93,14 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('public/js'))
 });
 
-gulp.task('html', function() {
-  return gulp.src('app/**/*.{html, php}') // Gets all files ending with .scss in app/scss 
+
+gulp.task('html', function () {
+  return gulp.src('app/**/*.{html,php}') // Gets all files ending with .php .html
     .pipe(gulp.dest('public'))
 });
 
 
-gulp.task('images', function() {
+gulp.task('images', function () {
   return gulp.src('app/img/*')
     .pipe(imagemin([
       imagemin.gifsicle({ interlaced: true }),
@@ -106,30 +118,30 @@ gulp.task('images', function() {
 
 
 
-gulp.task('watch:styles', ['styles'], function() {
+gulp.task('watch:styles', ['styles'], function () {
   gulp.watch('app/scss/**/*.scss', ['styles']);
 });
-gulp.task('watch:scripts', ['scripts'], function() {
+gulp.task('watch:scripts', ['scripts'], function () {
   gulp.watch('app/js/**/*.js', ['scripts']);
 });
-gulp.task('watch:images', ['images'], function() {
+gulp.task('watch:images', ['images'], function () {
   gulp.watch('app/img/*.{png,gif,jpg,jpeg,svg}', ['images'])
     .on("change", reload);
 });
-gulp.task('watch:html', ['html'], function() {
+gulp.task('watch:html', ['html'], function () {
   gulp.watch('app/**/*.{html,php}', ['html']);
 });
-gulp.task('clean-dist', function() {
+gulp.task('clean-dist', function () {
   return del([paths.dist + '/**']);
 });
-gulp.task('clean-public', function() {
+gulp.task('clean-public', function () {
   return del([paths.public + '/**']);
 });
 
 
 // gulp dist
 // Copies the files to the /dist folder for distribution as simple theme
-gulp.task('dist', function() {
+gulp.task('dist', function () {
   return gulp.src([paths.public + '/**/*', '!readme.txt', '!readme.md', '!package.json', '!package-lock.json', '!gulpfile.js', '!gulpconfig.json', '!CHANGELOG.md', '!.travis.yml', '!jshintignore', '!codesniffer.ruleset.xml'], { 'buffer': true })
     .pipe(gulp.dest(paths.dist));
 });

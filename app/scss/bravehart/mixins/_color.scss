@@ -45,6 +45,18 @@
 @each $key, $value in colorMap($color-list, 10) {
   @include colorClass(#{$key}, $value);
 }
+@each $key, $value in $alpha-list {
+  @include colorClass(#{$key}, $value);
+}
+
+@each $key, $value in $alpha-list {
+  @for $i from 1 through 9 {
+    $alpha: $i * 0.1;
+    $n: $i * 100;
+    $text: "-a";
+    @include colorClass(#{$key}#{$text}#{$n}, rgba($value, $alpha));
+  }
+}
 
 // Get Color Function
 @function getColor($color) {

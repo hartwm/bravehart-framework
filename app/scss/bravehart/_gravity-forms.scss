@@ -35,3 +35,43 @@ $green: $success;
 .gform_confirmation_message {
   @extend %success;
 }
+
+.gfield {
+  @extend .col-12;
+  &.half {
+    @extend .col-sm-6;
+  }
+}
+
+.gform_fields,
+.ginput_complex {
+  @extend .row;
+}
+
+.ginput_full {
+  @extend .col-12;
+}
+.ginput_left,
+.ginput_right {
+  @extend .col-12;
+  @extend .col-sm-6;
+}
+
+.gfield {
+  margin-bottom: 1.5rem;
+}
+
+.address-half {
+  .ginput_left,
+  .ginput_right {
+    @extend .col-12;
+    @extend .col-sm-6;
+    @extend .col-md-4;
+  }
+}
+
+.ginput_complex label {
+  font-weight: normal;
+  text-transform: uppercase;
+  @extend .sm;
+}

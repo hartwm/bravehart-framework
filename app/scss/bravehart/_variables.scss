@@ -29,36 +29,27 @@ $grid-breakpoints: (
 //
 $primary: #01b1ff !default;
 $secondary: #bc083e !default;
-$dark: #303742 !default;
-$light: #fff !default;
 $success: #32b643 !default;
 $warning: #ffb700 !default;
 $error: #e85600 !default;
 
+$white: #fff !default;
+$gray: #90989c !default;
+$black: #000 !default;
+
 $color-list: (
   primary: $primary,
   secondary: $secondary,
-  dark: $dark,
-  light: $light,
-  success: $success,
-  warning: $warning,
-  error: $error
+  gray: $gray
 );
 
-//
-// Grays
-//
-$white: #fff !default;
-$gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
-$gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #6c757d !default;
-$gray-700: #495057 !default;
-$gray-800: #343a40 !default;
-$gray-900: #212529 !default;
-$black: #000 !default;
+$alpha-list: (
+  primary: $primary,
+  secondary: $secondary,
+  gray: $gray,
+  white: $white,
+  black: $black
+);
 
 //
 // Fonts
@@ -73,6 +64,11 @@ $heading: "Playfair Display", serif;
 $cursive: cursive;
 $bold: 700;
 $bold-heading: 700;
+
+//
+// Type
+//
+$type-rhythm: 6/5;
 
 //
 // Spacing
@@ -103,3 +99,9 @@ $spacing-list: (
 // Transitions
 //
 $transition-base: all 300ms ease-in-out;
+
+//
+// Options
+//
+
+$type-rhythm: 6/5;

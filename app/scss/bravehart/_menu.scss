@@ -1,6 +1,5 @@
 .horizontal-nav {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   height: 100%;
   flex-direction: row;
@@ -41,5 +40,6 @@
 
 #page .dropdown:hover > .dropdown-menu {
   animation: fadeIn 300ms ease-in;
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
