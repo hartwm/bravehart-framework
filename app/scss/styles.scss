@@ -1,24 +1,142 @@
 @import "bravehart/bravehart";
+$grid-breakpoints: (
+  null: 0,
+  phone: 479px,
+  tablet: 767px,
+  laptop: 800px
+);
 
-.bg-active {
-  margin: 1rem auto;
+%gradient {
+  background: linear-gradient(to right, #ef473a, #cb2d3e);
+}
 
-  .inner {
-    background: $black-200;
-    height: 100%;
+.btn {
+  @extend %gradient;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-align: center;
+  display: none;
+  margin-right: 1rem;
+  color: $white;
+  @include transition;
+  &:hover {
+    background: linear-gradient(to right, darken(#ef473a, 10%), darken(#cb2d3e, 10%));
+    color: $white;
   }
-  .col {
-    height: 20vh;
-    //   background: $primary;
-    //   &:nth-child(1) {
-    //     background: $error;
-    //   }
-    //   &:nth-child(3) {
-    //     background: $success;
-    //   }
+
+  @include up(tablet) {
+    display: inline-block;
   }
-  // background: $warning;
-  .row {
-    background: purple;
+  @include up(laptop) {
+    float: right;
   }
+}
+
+.left-side {
+  @include down(tablet) {
+    display: none;
+  }
+}
+
+.banner h1 a {
+  @include down(phone) {
+    font-size: 20px;
+  }
+}
+.banner h4 {
+  @include down(phone) {
+    font-size: 14px;
+  }
+}
+.entry-title {
+  @include down(phone) {
+    font-size: 20px;
+  }
+}
+
+h2 {
+  @include down(phone) {
+    font-size: 16px;
+    margin-bottom: 1rem;
+  }
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flexy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.entry-content {
+  margin-top: 1rem;
+}
+
+.cta-wrapper {
+  background: linear-gradient(to bottom, #414345, #232526);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  .phone-svg {
+    height: 2rem;
+    width: 2rem;
+  }
+  span {
+    display: inline-block;
+  }
+  .tel-link {
+    @extend %gradient;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    border-radius: 5px;
+    padding: 0.5rem 2rem;
+    font-weight: bold;
+    .main-phone {
+      font-size: 26px;
+      line-height: 1;
+    }
+  }
+}
+
+.mobile-cta {
+  @include up(tablet) {
+    display: none;
+  }
+}
+
+.ipad-cta,
+.cta-wrapper {
+  @include up(laptop) {
+    display: none;
+  }
+}
+
+.desktop-cta {
+  display: none;
+  @include up(laptop) {
+    display: block;
+  }
+}
+
+.cta-top {
+  color: $white;
+  font-size: 16px;
+  font-style: italic;
+}
+.cta-bottom {
+  color: $white;
+  font-size: 26px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.phone-svg {
+  fill: $white;
+  margin-right: 1rem;
 }

@@ -15,6 +15,7 @@ $url = 'https://masswagelaw.com/';
 
   <!--[if !IE]><!-->
   <link rel="stylesheet" href="<?= $url ?>style.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
   <!--<![endif]-->
 
   <link rel="stylesheet" id="google_fonts-css"
@@ -71,7 +72,7 @@ $url = 'https://masswagelaw.com/';
   <!-- End Facebook Pixel Code -->
 
 
-  <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="<?= $url ?>js/jquery-3.2.1.min.js"></script>
   <script>
   $(document).ready(function() {
 
@@ -88,16 +89,39 @@ $url = 'https://masswagelaw.com/';
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <div class="wraps">
+
+    <div class="cta-wrapper">
+      <span class="cta-top">Ortiz Abogados De Derecho Salarial</span>
+      <span class="cta-bottom">!Llama Ya! Evaluación GRATIS De Tu Caso</span>
+      <div class="mobile-cta">
+        <a href="tel:+16175397246" target="_blank" rel="nofollow" class="tel-link">
+          <div class="flex">
+            <div class="svg-wrap">
+              <svg class="phone-svg" viewBox="0 0 480.56 480.56">
+                <path
+                  d="M365.354 317.9c-15.7-15.5-35.3-15.5-50.9 0-11.9 11.8-23.8 23.6-35.5 35.6-3.2 3.3-5.9 4-9.8 1.8-7.7-4.2-15.9-7.6-23.3-12.2-34.5-21.7-63.4-49.6-89-81-12.7-15.6-24-32.3-31.9-51.1-1.6-3.8-1.3-6.3 1.8-9.4 11.9-11.5 23.5-23.3 35.2-35.1 16.3-16.4 16.3-35.6-.1-52.1-9.3-9.4-18.6-18.6-27.9-28-9.6-9.6-19.1-19.3-28.8-28.8-15.7-15.3-35.3-15.3-50.9.1-12 11.8-23.5 23.9-35.7 35.5-11.3 10.7-17 23.8-18.2 39.1-1.9 24.9 4.2 48.4 12.8 71.3 17.6 47.4 44.4 89.5 76.9 128.1 43.9 52.2 96.3 93.5 157.6 123.3 27.6 13.4 56.2 23.7 87.3 25.4 21.4 1.2 40-4.2 54.9-20.9 10.2-11.4 21.7-21.8 32.5-32.7 16-16.2 16.1-35.8.2-51.8-19-19.1-38.1-38.1-57.2-57.1zM346.254 238.2l36.9-6.3c-5.8-33.9-21.8-64.6-46.1-89-25.7-25.7-58.2-41.9-94-46.9l-5.2 37.1c27.7 3.9 52.9 16.4 72.8 36.3 18.8 18.8 31.1 42.6 35.6 68.8zM403.954 77.8c-42.6-42.6-96.5-69.5-156-77.8l-5.2 37.1c51.4 7.2 98 30.5 134.8 67.2 34.9 34.9 57.8 79 66.1 127.5l36.9-6.3c-9.7-56.2-36.2-107.2-76.6-147.7z" />
+              </svg>
+            </div>
+            <div class="flexy">
+              <span class="main-phone"> 617-539-7246</span>
+              <span class="alt-phone">(617-LEY-PAGO)</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="ipad-cta">
+        <a href="contact.asp" class="btn">Contact for Free Case Evaluation</a>
+      </div>
+    </div>
+
     <div id="header">
       <div class="menu_ico"><img src="<?= $url ?>images/menu_ico.png" class="" alt="" /></div>
       <div class="banner">
-        <map name="contactmap">
 
-          <area shape="rect" coords="0,0,281,44" href="<?= $url ?>contact.asp" alt="">
+        <div class="desktop-cta">
+          <a href="contact.asp" class="btn">Contact for Free Case Evaluation</a>
+        </div>
 
-        </map>
-        <img src="<?= $url ?>images/contact.png" alt="Contact Us" ismap="ismap" usemap="#contactmap" align="right"
-          style="margin-right: 20px;margin-top: 30px;">
         <h1><a href="https://www.masswagelaw.com" title="Massachusetts Wage and Hour Law" rel="home">Massachusetts Wage
             Law</a></h1>
         <h4>Unpaid Wage and Overtime Attorneys in Massachusetts</h4>
@@ -222,18 +246,21 @@ $url = 'https://masswagelaw.com/';
 
             <h2>Si mi empleador no me paga mi salario, ¿cuanto va a cobrarme un abogado por llevar mi caso?</h2>
 
-            La evaluación de su caso es gratis. Si iniciamos un caso, nuestros honorarios serán pagados por su empleador
-            y si no ganamos el caso, usted no paga. Nadie tiene que pagarnos para iniciar un caso ni para una
-            evaluación.
+            <p>La evaluación de su caso es gratis. Si iniciamos un caso, nuestros honorarios serán pagados por su
+              empleador
+              y si no ganamos el caso, usted no paga. Nadie tiene que pagarnos para iniciar un caso ni para una
+              evaluación.</p>
 
 
             <h2>Deben pagarme el tiempo que tardo en trasladarme de un lugar a otro en el trabajo?</h2>
 
-            Desde el momento que empieza a trabaja hasta el momento que termina de trabajar en un dia, usted tiene
-            derecho al pago por cada hora trabajada con estas dos excepciones: (1) No le tienen que pagar por descansos
-            (“breaks”) que duren minimo 30 minutos y en los cuales usted esté completamente libre, incluyendo salir del
-            lugar del trabajo, solo asi es un descanso valido; y (2) El tiempo que usted tarda en llegar de su casa al
-            trabajo y desde el momento que sale del trabajo es sin pago.
+            <p>Desde el momento que empieza a trabaja hasta el momento que termina de trabajar en un dia, usted tiene
+              derecho al pago por cada hora trabajada con estas dos excepciones: (1) No le tienen que pagar por
+              descansos
+              (“breaks”) que duren minimo 30 minutos y en los cuales usted esté completamente libre, incluyendo salir
+              del
+              lugar del trabajo, solo asi es un descanso valido; y (2) El tiempo que usted tarda en llegar de su casa al
+              trabajo y desde el momento que sale del trabajo es sin pago.</p>
             <p>
               Es común que los empleadores rompan este ley. Estos son algunos ejemplos de casos que llevamos: (1) cuando
               uno termina sus horas de trabajo y su empleador le pide regresar a la oficina principal para entregar
@@ -244,23 +271,26 @@ $url = 'https://masswagelaw.com/';
               asignada a otra durante del dia de trabajo.
             </p>
             <h2>¿Mi jefe puede pedirme trabajar más horas sin pago?</h2>
-            No, su empleador debe pagar por cada hora que usted trabaje sin excepción. Es común que alugnos empleadores
-            usen trampas y estrategias para hacer que el empleado trabaje sin pagar. Hay muchas maneras en que los
-            empleadores logran ésto, un ejemplo es :si uno registra su salida del trabajo y su jefe le pide realizar
-            alguna actividad laboral. En ese ejemplo, ese empleador debe pagar por el tiempo que la persona tome para
-            desempeñar esa labor.
+            <p>No, su empleador debe pagar por cada hora que usted trabaje sin excepción. Es común que alugnos
+              empleadores
+              usen trampas y estrategias para hacer que el empleado trabaje sin pagar. Hay muchas maneras en que los
+              empleadores logran ésto, un ejemplo es :si uno registra su salida del trabajo y su jefe le pide realizar
+              alguna actividad laboral. En ese ejemplo, ese empleador debe pagar por el tiempo que la persona tome para
+              desempeñar esa labor.</p>
 
             <h2>¿Alguna persona con personas a su cargo, por ejemplo alguno de mis jefes o Manager’s puede compartir mis
               propinas o las de mis compañeros?</h2>
-            No, ninguna persona que tenga personas a su cargo, puede recibir ningún porcentaje de los tips. Por ejemplo,
-            ningún manager o sub-manager, bajo ninguna circunstancia podrá recibir parte de ese dinero.
+            <p>No, ninguna persona que tenga personas a su cargo, puede recibir ningún porcentaje de los tips. Por
+              ejemplo,
+              ningún manager o sub-manager, bajo ninguna circunstancia podrá recibir parte de ese dinero.</p>
 
             <h2>¿Cuánto dinero puedo reclamar si inició un proceso de reclamación con un abogado?</h2>
 
-            Dependiendo de las condiciones de su caso, usted puede recibir hasta tres veces lo que su empleador le debe
-            o no le pagó. Para determinar eso, es necesaria una evaluación gratuita de su caso en particular.
+            <p>Dependiendo de las condiciones de su caso, usted puede recibir hasta tres veces lo que su empleador le
+              debe
+              o no le pagó. Para determinar eso, es necesaria una evaluación gratuita de su caso en particular.
 
-            &nbsp;</p>
+              &nbsp;</p>
 
 
           </div>
